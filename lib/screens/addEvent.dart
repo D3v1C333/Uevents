@@ -26,6 +26,7 @@ class _AddEventState extends State<AddEvent> {
     'a',
     'a',
     'a',
+    'a',
   );
 
   @override
@@ -41,11 +42,11 @@ class _AddEventState extends State<AddEvent> {
       }
       DateTime now = DateTime.now();
 
-      if(event.uid == 'id'){
+      if (event.uid == 'id') {
         event.uid = user.id + now.toString();
       }
       await DatabaseService().addOrUpdateEvent(event);
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(event);
     } else {
       buildToast('Упс! Что-то пошло не так');
     }
@@ -100,7 +101,8 @@ class _AddEventState extends State<AddEvent> {
                         },
                         validators: [
                           FormBuilderValidators.required(),
-                          FormBuilderValidators.maxLength(200),
+                          FormBuilderValidators.minLength(30),
+                          FormBuilderValidators.maxLength(120),
                         ],
                       ),
                       FormBuilderTextField(
@@ -140,12 +142,28 @@ class _AddEventState extends State<AddEvent> {
                         ),
                         onChanged: (dynamic val) {
                           setState(() {
-                            event.adress = val;
+                            event.address = val;
                           });
                         },
                         validators: [
                           FormBuilderValidators.required(),
                           FormBuilderValidators.maxLength(100),
+                        ],
+                      ),
+                      FormBuilderTextField(
+                        attribute: "ссылка на картинку",
+                        decoration: InputDecoration(
+                          labelText: "Ссылка на картинку*",
+                        ),
+                        onChanged: (dynamic val) {
+                          setState(() {
+                            event.picture = val;
+                          });
+                        },
+                        validators: [
+                          FormBuilderValidators.required(),
+                          FormBuilderValidators.minLength(30),
+                          FormBuilderValidators.maxLength(120),
                         ],
                       ),
                     ]),

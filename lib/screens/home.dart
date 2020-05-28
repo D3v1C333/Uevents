@@ -1,11 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:uevents/data/data.dart';
 import 'package:uevents/domain/eventCard.dart';
+import 'package:uevents/domain/showEvent.dart';
 import 'package:uevents/screens/addEvent.dart';
 import 'package:uevents/services/auth.dart';
 
 class Landing extends State<LandingPage> {
+
+  final showsEvents = List<Data>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,10 +59,7 @@ class Landing extends State<LandingPage> {
             }),
           ],
         )),
-        body: Container(
-            child: EventCard.createCard(context),
-            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-            alignment: Alignment.topCenter),
+        body: WorkoutsList(),
         floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uevents/screens/home.dart';
 
 class SaveButton extends StatelessWidget {
   Function onPressed;
@@ -13,6 +14,7 @@ class SaveButton extends StatelessWidget {
                   side: BorderSide(color: Colors.pinkAccent)),
               onPressed: () {
                 onPressed();
+                LandingPage();
               },
               color: Colors.pinkAccent,
               textColor: Colors.white,

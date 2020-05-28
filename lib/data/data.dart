@@ -4,15 +4,27 @@ class Data {
   String shortDescription;
   String description;
   String organizer;
-  String adress;
+  String address;
+  String picture;
 
-  Data(this.uid,this.title, this.description, this.organizer, this.adress,
-      this.shortDescription);
+  Data(this.uid,this.title, this.description, this.organizer, this.address,
+      this.shortDescription, this.picture);
 
   Data copy() {
     return Data(this.uid, this.title, this.description, this.organizer,
-        this.adress, this.shortDescription);
+        this.address, this.shortDescription, this.picture);
   }
+
+  Data.fromJson(String uid, Map<String, dynamic> data){
+    uid = uid;
+    title = data['title'];
+    shortDescription = data['shortDescription'];
+    description = data['description'];
+    organizer = data['organizer'];
+    address = data['address'];
+    picture = data['picture'];
+  }
+
    Map<String, dynamic> toMap(){
     return {
       "title": title,
@@ -20,7 +32,8 @@ class Data {
       "shortDescription": shortDescription,
       "organizer": organizer,
       "uid": uid,
-      "adress": adress,
+      "address": address,
+      "picture": picture,
     };
   }
 }

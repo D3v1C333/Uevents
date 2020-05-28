@@ -16,6 +16,7 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
   TextEditingController _confirmPasswordController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
 
+  User user;
   String _email;
   String _password;
   String _confirmPassword;
@@ -152,7 +153,6 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
       } else {
         _emailController.clear();
         _passwordController.clear();
-        user.name = _name;
       }
     }
 
@@ -163,8 +163,10 @@ class _AuthorizationPageState extends State<AuthorizationPage> {
 
 
       if (_email.isEmpty || _password.isEmpty) return;
+      
       User user = await _authService.registerWithEmailAndPassword(
           _email.trim(), _password.trim());
+      user.name = _name;
       if (user == null) {
         buildToast("Не возможно зарегистрироваться, пожалуйста, проверьте логин/пароль");
       if (_password != _confirmPassword) {
